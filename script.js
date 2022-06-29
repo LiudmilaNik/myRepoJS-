@@ -53,14 +53,15 @@ const render = function () {
       item.completed = !item.completed;
       render();
     });
-    /*при клике на корзину удаляем задачи и временное хранилище:*/
+    /*при клике на корзину удаляем задачи:*/
     li.querySelector(".todo-remove").addEventListener("click", function () {
       toDoData.splice(index, 1);
-      localStorage.clear();
+      // localStorage.clear();
       render();
     });
   });
 };
+render();
 
 /*вешаем обработчик событий на форму:*/
 todoControl.addEventListener("submit", function (event) {
