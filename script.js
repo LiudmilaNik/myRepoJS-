@@ -17,13 +17,9 @@ if (!localStorage.toDoData) {
   toDoData = JSON.parse(localStorage.getItem("toDoData"));
 }
 
-/*отправляем массив на хранение во временное хранилище*/
-const updateLocal = function () {
-  localStorage.setItem("toDoData", JSON.stringify(toDoData));
-};
-
 /*отрисовывает ToDo*/
 const render = function () {
+  localStorage.setItem("toDoData", JSON.stringify(toDoData));
   /*нужно очищать списки, чтобы при добавлении новых старые не дублировались:*/
   todoList.innerHTML = "";
   todoCompleted.innerHTML = "";
@@ -81,6 +77,5 @@ todoControl.addEventListener("submit", function (event) {
     toDoData.push(newToDo);
   }
   headerInput.value = ""; /*очищает input после события submit*/
-  updateLocal();
   render();
 });
