@@ -1,36 +1,51 @@
 "use strict";
+const main = document.querySelector(".main");
 
-function guessingNumber() {
-  let randomNumber = Math.floor(Math.random() * 9 + 1);
-  console.log(randomNumber);
-  const guessNumber = function () {
-    let userNumber = +prompt("Угадай число от 1 до 10");
-    console.log(userNumber);
+const DomElement = function (selector, height, width, bg, fontSize) {
+  this.selector = selector;
+  this.height = height;
+  this.width = width;
+  this.bg = bg;
+  this.fontSize = fontSize;
+  this.nameTag = selector.substring(1); /*имя тега без 1го символа селектора*/
 
-    if (isNaN(userNumber) || userNumber === "") {
-      alert("Введите число");
-      return guessNumber();
+  this.createElem = function () {
+    if (selector[0] == ".") {
+      const divClass = document.createElement("div");
+      divClass.classList = this.nameTag;
+      divClass.style.cssText =
+        "height:" +
+        height +
+        "px; width: " +
+        width +
+        "px; background-color: " +
+        bg +
+        "; font-size: " +
+        fontSize +
+        "px;";
+      divClass.textContent = `I'm new div class ${this.selector}`;
+      main.append(divClass); /*вставляет divClass в  main*/
+    } else if (selector[0] == "#") {
+      const parId = document.createElement("p");
+      parId.id = this.nameTag;
+      parId.style.cssText =
+        "height:" +
+        height +
+        "px; width: " +
+        width +
+        "px; background-color: " +
+        bg +
+        "; font-size: " +
+        fontSize +
+        "px;";
+      parId.textContent = "I'm new p id " + this.selector;
+      main.append(parId);
     }
-
-    if (userNumber === null) {
-      alert("Игра окончена");
-      return;
-    }
-
-    if (userNumber !== randomNumber) {
-      if (userNumber > randomNumber) {
-        alert("Загаданное число меньше!");
-        return guessNumber();
-      } else if (userNumber < randomNumber) {
-        alert("Загаданное число больше!");
-        return guessNumber();
-      }
-    } else {
-      alert("Поздравляю, Вы угадали!");
-    }
-
-    return;
   };
-  guessNumber();
-}
-guessingNumber();
+};
+
+const newDiv = new DomElement(".block", 50, 300, "green", 25);
+newDiv.createElem();
+
+const newPar = new DomElement("#best", 50, 300, "red", 25);
+newPar.createElem();
