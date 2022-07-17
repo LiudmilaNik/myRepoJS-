@@ -1,36 +1,31 @@
 "use strict";
 
-function guessingNumber() {
-  let randomNumber = Math.floor(Math.random() * 9 + 1);
-  console.log(randomNumber);
-  const guessNumber = function () {
-    let userNumber = +prompt("Угадай число от 1 до 10");
-    console.log(userNumber);
+const week = [
+  "Понедельник",
+  "Вторник",
+  "Среда",
+  "Четверг",
+  "Пятница",
+  "Суббота",
+  "Воскресенье",
+];
+const day = document.getElementById("fordays");
+const todayDay = new Date();
 
-    if (isNaN(userNumber) || userNumber === "") {
-      alert("Введите число");
-      return guessNumber();
+const days = () => {
+  week.forEach((item, i) => {
+    let newdiv = document.createElement("div");
+    if (i === +todayDay.getDay() - 1) {
+      newdiv.style.cssText = "font-weight: 700 px";
+      newdiv.textContent = week[i];
     }
-
-    if (userNumber === null) {
-      alert("Игра окончена");
-      return;
-    }
-
-    if (userNumber !== randomNumber) {
-      if (userNumber > randomNumber) {
-        alert("Загаданное число меньше!");
-        return guessNumber();
-      } else if (userNumber < randomNumber) {
-        alert("Загаданное число больше!");
-        return guessNumber();
-      }
+    if (item == "Суббота" || item == "Воскресенье") {
+      newdiv.style.cssText = "font-style: italic";
+      newdiv.textContent = week[i];
     } else {
-      alert("Поздравляю, Вы угадали!");
+      newdiv.textContent = week[i];
     }
-
-    return;
-  };
-  guessNumber();
-}
-guessingNumber();
+    day.appendChild(newdiv);
+  });
+};
+days();
