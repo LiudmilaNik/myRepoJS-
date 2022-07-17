@@ -1,36 +1,18 @@
 "use strict";
 
-function guessingNumber() {
-  let randomNumber = Math.floor(Math.random() * 9 + 1);
-  console.log(randomNumber);
-  const guessNumber = function () {
-    let userNumber = +prompt("Угадай число от 1 до 10");
-    console.log(userNumber);
+// Урок №5
+let arr = ["32", "27", "755", "104", "47", "78", "377"];
 
-    if (isNaN(userNumber) || userNumber === "") {
-      alert("Введите число");
-      return guessNumber();
-    }
+arr.forEach((item) => {
+  if (item.startsWith("2") || item.startsWith("4")) {
+    console.log(item);
+  }
+});
 
-    if (userNumber === null) {
-      alert("Игра окончена");
-      return;
-    }
-
-    if (userNumber !== randomNumber) {
-      if (userNumber > randomNumber) {
-        alert("Загаданное число меньше!");
-        return guessNumber();
-      } else if (userNumber < randomNumber) {
-        alert("Загаданное число больше!");
-        return guessNumber();
-      }
-    } else {
-      alert("Поздравляю, Вы угадали!");
-    }
-
-    return;
-  };
-  guessNumber();
+let prime = document.getElementById("primeNum");
+primeNumber: for (let i = 2; i <= 100; i++) {
+  for (let j = 2; j < i; j++) {
+    if (i % j == 0) continue primeNumber;
+  }
+  console.log("простое :" + i + " " + " Делители этого числа: 1 и " + i);
 }
-guessingNumber();
