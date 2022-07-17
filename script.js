@@ -1,36 +1,30 @@
 "use strict";
+// Урок №2
 
-function guessingNumber() {
-  let randomNumber = Math.floor(Math.random() * 9 + 1);
-  console.log(randomNumber);
-  const guessNumber = function () {
-    let userNumber = +prompt("Угадай число от 1 до 10");
-    console.log(userNumber);
+const num = 266219;
+const getMultiple = (num) =>
+  num
+    .toString()
+    .split("")
+    .reduce((res, item) => item * res, 1);
 
-    if (isNaN(userNumber) || userNumber === "") {
-      alert("Введите число");
-      return guessNumber();
-    }
+const resultP = getMultiple(123);
+const result = resultP ** 3;
 
-    if (userNumber === null) {
-      alert("Игра окончена");
-      return;
-    }
+console.log(resultP);
+console.log(result);
+console.log(String(num).slice(0, 2));
 
-    if (userNumber !== randomNumber) {
-      if (userNumber > randomNumber) {
-        alert("Загаданное число меньше!");
-        return guessNumber();
-      } else if (userNumber < randomNumber) {
-        alert("Загаданное число больше!");
-        return guessNumber();
-      }
-    } else {
-      alert("Поздравляю, Вы угадали!");
-    }
+// Урок №4
 
+const letter = prompt("write");
+
+const myString = function (str) {
+  if (typeof str !== "string") {
+    alert("Это не строка");
     return;
-  };
-  guessNumber();
-}
-guessingNumber();
+  } else str = str.trim();
+  return str.length > 30 ? str.slice(0, 30) + "..." : str;
+};
+
+console.log(myString(letter));
