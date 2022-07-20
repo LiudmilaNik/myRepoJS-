@@ -17,7 +17,7 @@ const days = () => {
     let newdiv = document.createElement("div");
     if (i === +todayDay) {
       newdiv.textContent = week[i];
-      newdiv.style.cssText = "font-weight: 700 px; color: blue;";
+      newdiv.style.cssText = "font-weight: bolder;";
     }
     if (item == "Суббота" || item == "Воскресенье") {
       newdiv.textContent = week[i];
