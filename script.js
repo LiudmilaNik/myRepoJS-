@@ -10,18 +10,18 @@ const week = [
   "Воскресенье",
 ];
 const day = document.getElementById("fordays");
-const todayDay = new Date();
+const todayDay = new Date().getDay() - 1;
 
 const days = () => {
   week.forEach((item, i) => {
     let newdiv = document.createElement("div");
-    if (i === +todayDay.getDay() - 1) {
-      newdiv.style.cssText = "font-weight: 700 px";
+    if (i === +todayDay) {
       newdiv.textContent = week[i];
+      newdiv.style.cssText = "font-weight: 700 px; color: blue;";
     }
     if (item == "Суббота" || item == "Воскресенье") {
-      newdiv.style.cssText = "font-style: italic";
       newdiv.textContent = week[i];
+      newdiv.style.cssText = "font-style: italic";
     } else {
       newdiv.textContent = week[i];
     }
