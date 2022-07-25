@@ -1,36 +1,30 @@
 "use strict";
+const getData = () => {
+  return fetch("db.json").then((response) => response.json());
+};
 
-function guessingNumber() {
-  let randomNumber = Math.floor(Math.random() * 9 + 1);
-  console.log(randomNumber);
-  const guessNumber = function () {
-    let userNumber = +prompt("Угадай число от 1 до 10");
-    console.log(userNumber);
+const sendData = (url, data) => {
+  return fetch(url, {
+    method: "POST",
+    body: data,
+    headers: {
+      "Content-type": "application/json; charset-UTF-8",
+    },
+  }).then((response) => response.json());
+};
 
-    if (isNaN(userNumber) || userNumber === "") {
-      alert("Введите число");
-      return guessNumber();
-    }
-
-    if (userNumber === null) {
-      alert("Игра окончена");
-      return;
-    }
-
-    if (userNumber !== randomNumber) {
-      if (userNumber > randomNumber) {
-        alert("Загаданное число меньше!");
-        return guessNumber();
-      } else if (userNumber < randomNumber) {
-        alert("Загаданное число больше!");
-        return guessNumber();
-      }
-    } else {
-      alert("Поздравляю, Вы угадали!");
-    }
-
-    return;
+document.addEventListener("DOMContentLoaded", () => {
+  const fail = {
+    user: "Vlad",
+    age: 33,
+    role: "developer",
   };
-  guessNumber();
-}
-guessingNumber();
+
+  getData()
+    .then((data) => console.log(data))
+    .catch((error) => console.log(error));
+
+  sendData("https://jsonplaceholder.typicode.com/posts", JSON.stringify(fail))
+    .then((data) => console.log(data))
+    .catch((error) => console.log(error));
+});
